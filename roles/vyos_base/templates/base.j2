@@ -1,0 +1,21 @@
+{# Set hostname #}
+set system host-name {{ inventory_hostname_short }}
+
+{# Set SSH #}
+set service ssh port {{ ssh_port }}
+set service ssh disable-password-authentication
+
+{# Enable DNS forwarder #}
+
+set service dns forwarding allow-from '10.0.0.0/16'
+set service dns forwarding listen-address '127.0.0.1'
+set service dns forwarding system
+
+{# Set Nameservers  #}
+{% for nameserver in name_servers %}
+set system name-server {{ nameserver }}
+{% endfor %}
+
+{# Set Static route #}
+set protocols static route 0.0.0.0/0 next-hop {{ default_gateway }}
+
