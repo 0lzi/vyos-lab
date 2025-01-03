@@ -1,0 +1,7 @@
+{# Setup Interfaces #}
+{% for interface in networks | dict2items  -%}
+set interfaces ethernet {{ interface.value.interface }} address {{ interface.value.address }}
+set interfaces ethernet {{ interface.value.interface }} description {{ interface.value.description }}
+{% endfor %}
+
+

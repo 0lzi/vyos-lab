@@ -1,2 +1,5 @@
 [vyos]
 firewall.lab
+
+[lab:children]
+vyos

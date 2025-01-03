@@ -1,0 +1,11 @@
+---
+- name: Set up VyOS Networks
+  hosts: vyos
+  gather_facts: false
+  order: inventory
+  roles:
+    - vyos_networks
+  post_tasks:
+    - name: "Configure vyos networks"
+      vyos.vyos.vyos_config:
+        save: true
