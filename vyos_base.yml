@@ -1,6 +1,7 @@
 ---
 - name: Set up VyOS firewalls
   hosts: vyos
+  gather_facts: false
   order: inventory
   roles:
     - vyos_base
