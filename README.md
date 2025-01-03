@@ -10,7 +10,15 @@ Make sure it has 2 interfaces one for WAN one for LAN/SDN network
 install image
 ```
 
-## Initial config
+## Ansible setup
+
+prerequisites: `pipenv` , `sudo apt install pipenv` or `brew install pipenv`
+
+With `pipenv` installed , run `pipenv install` then shell into the `pipenv` with `pipenv shell`
+
+Run the playbooks as normal eg `ansible-playbook vyos_base.yml`
+
+## Initial manual config
 ```
 set system host-name 'firewall'
 set interfaces ethernet eth0 address '10.0.1.254/24' # SDN network
