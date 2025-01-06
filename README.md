@@ -14,7 +14,8 @@ install image
 
 prerequisites: `pipenv` , `sudo apt install pipenv` or `brew install pipenv`
 
-With `pipenv` installed , run `pipenv install` then shell into the `pipenv` with `pipenv shell`
+With `pipenv` installed , run `pipenv install` then shell into the `pipenv` with `pipenv shell` install 
+ansible requirements, `ansible-galaxy install -r requirements.yml`
 
 Run the playbooks as normal eg `ansible-playbook vyos_base.yml`
 

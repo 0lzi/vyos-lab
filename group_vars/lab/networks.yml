@@ -2,21 +2,27 @@ networks:
   0:
     address: 192.168.1.252/24
     cidr: 192.168.1.0/24
-    description: HOME
+    description: home
     gateway: 192.168.1.254/24
     vif: false
     interface: eth1
   1:
     address: 10.0.1.254/24
     cidr: 10.0.1.0/24
-    description: DEVNET
+    description: devnet
     gateway: 10.0.10.254/24
+    dhcp:
+      start: 10.0.1.1
+      stop: 10.0.1.10
     vif: false
     interface: eth0
   10:
     address: 10.0.10.254/24
     cidr: 10.0.10.0/24
-    description: VLAN10
+    description: vlan10
     gateway: 10.0.10.254/24
+    dhcp:
+      start: 10.0.10.1
+      stop: 10.0.10.10
     vif: false
     interface: eth2
