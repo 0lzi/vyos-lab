@@ -19,3 +19,6 @@ set system name-server {{ nameserver }}
 {# Set Static route #}
 set protocols static route 0.0.0.0/0 next-hop {{ default_gateway }}
 
+{# Remove vyos user #}
+delete system login user vyos
+
