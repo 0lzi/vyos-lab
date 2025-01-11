@@ -1,0 +1,3 @@
+- name: "Set up Firewall"
+  vyos.vyos.vyos_config:
+    src: firewall.j2

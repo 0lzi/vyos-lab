@@ -1,10 +1,10 @@
 ---
-- name: Set up VyOS Base
+- name: Set up VyOS Firewall
   hosts: vyos
   gather_facts: false
   order: inventory
   roles:
-    - vyos_base
+    - vyos_firewall
   post_tasks:
     - name: "Configure base vyos"
       vyos.vyos.vyos_config:
