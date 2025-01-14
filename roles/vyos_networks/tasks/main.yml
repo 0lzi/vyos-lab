@@ -1,3 +1,4 @@
 - name: "Set up Networks"
   vyos.vyos.vyos_config:
     src: networks.j2
+  notify: Save config

@@ -1,11 +1,7 @@
 ---
 - name: Set up VyOS Base
   hosts: vyos
-  gather_facts: false
+  gather_facts: true
   order: inventory
   roles:
     - vyos_base
-  post_tasks:
-    - name: "Configure base vyos"
-      vyos.vyos.vyos_config:
-        save: true

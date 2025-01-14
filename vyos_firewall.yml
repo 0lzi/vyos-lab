@@ -5,7 +5,3 @@
   order: inventory
   roles:
     - vyos_firewall
-  post_tasks:
-    - name: "Configure base vyos"
-      vyos.vyos.vyos_config:
-        save: true
