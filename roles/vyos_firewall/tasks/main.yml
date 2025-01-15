@@ -1,4 +1,4 @@
-- name: "Set up Networks"
+- name: "Set up Firewall"
   vyos.vyos.vyos_config:
-    src: networks.j2
+    src: firewall.j2
   notify: Save config

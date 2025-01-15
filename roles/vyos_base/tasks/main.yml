@@ -1,3 +1,4 @@
 - name: "Set up base configuration"
   vyos.vyos.vyos_config:
     src: base.j2
+  notify: Save config

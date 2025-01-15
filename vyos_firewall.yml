@@ -1,0 +1,7 @@
+---
+- name: Set up VyOS Firewall
+  hosts: vyos
+  gather_facts: false
+  order: inventory
+  roles:
+    - vyos_firewall

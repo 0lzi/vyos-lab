@@ -4,6 +4,8 @@ networks:
     cidr: 192.168.1.0/24
     description: home
     gateway: 192.168.1.254/24
+    firewall:
+      inside: false
     vif: false
     interface: eth1
   1:
@@ -11,6 +13,9 @@ networks:
     cidr: 10.0.1.0/24
     description: devnet
     gateway: 10.0.10.254/24
+    firewall:
+      inside: true
+      nat: true
     dhcp:
       start: 10.0.1.1
       stop: 10.0.1.10
@@ -21,6 +26,9 @@ networks:
     cidr: 10.0.10.0/24
     description: vlan10
     gateway: 10.0.10.254/24
+    firewall:
+      inside: true
+      nat: true
     dhcp:
       start: 10.0.10.1
       stop: 10.0.10.10

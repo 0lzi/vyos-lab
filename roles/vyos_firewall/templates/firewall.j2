@@ -1,0 +1,11 @@
+{# Global State Policies #}
+set firewall global-options state-policy established action accept
+set firewall global-options state-policy related action accept
+set firewall global-options state-policy invalid action drop
+
+{# Set network-groups #}
+{% for addr in networks | dict2items %}
+{% if addr.value.firewall is defined %}
+set firewall group network-group NET-{{ "INSIDE" if addr.value.firewall.inside else "OUTSIDE" }} network '{{ addr.value.cidr }}'
+{% endif %}
+{% endfor %}
