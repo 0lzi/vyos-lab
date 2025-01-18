@@ -1,0 +1,25 @@
+port_forward:
+  1:
+    description:
+    dest_port:
+    dest_ip:
+    protocol:
+    inbound_int:
+  2:
+    description:
+    dest_port:
+    dest_ip:
+    protocol:
+    inbound_int:
+  3:
+    description:
+    dest_port:
+    dest_ip:
+    protocol:
+    inbound_int:
+  4:
+    description:
+    dest_port:
+    dest_ip:
+    protocol:
+    inbound_int:
