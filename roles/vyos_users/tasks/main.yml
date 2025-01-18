@@ -1,3 +1,4 @@
 - name: "Set up Users"
   vyos.vyos.vyos_config:
     src: users.j2
+  notify: Save config

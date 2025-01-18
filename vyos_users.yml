@@ -7,8 +7,3 @@
     - ./vars/users.yml
   roles:
     - vyos_users
-  post_tasks:
-    - name: "Configure vyos Users"
-      vyos.vyos.vyos_config:
-        save: true
-
