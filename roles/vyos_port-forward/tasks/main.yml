@@ -1,0 +1,9 @@
+- name: "Set up Firewall for DNAT/Portforwarding"
+  vyos.vyos.vyos_config:
+    src: firewall-dnat.j2
+  notify: Save config
+
+- name: "Set up DNAT/Portforwarding"
+  vyos.vyos.vyos_config:
+    src: port-forward.j2
+  notify: Save config

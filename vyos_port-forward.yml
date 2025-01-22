@@ -1,0 +1,7 @@
+---
+- name: Set up VyOS Networks
+  hosts: vyos
+  gather_facts: true
+  order: inventory
+  roles:
+    - vyos_port-forward

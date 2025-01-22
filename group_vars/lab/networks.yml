@@ -8,6 +8,7 @@ networks:
       inside: false
     vif: false
     interface: eth1
+    wan: true
   1:
     address: 10.0.1.254/24
     cidr: 10.0.1.0/24

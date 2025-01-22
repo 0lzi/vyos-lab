@@ -1,0 +1,13 @@
+port_forward:
+  1:
+    description: Port forward to LB HTTP
+    dest_port: 80
+    dest_ip: 10.0.1.1
+    protocol: tcp
+    inbound_int_group: WAN
+  2:
+    description: Port forward to LB HTTS
+    dest_port: 443
+    dest_ip: 10.0.1.1
+    protocol: tcp
+    inbound_int_group: WAN
