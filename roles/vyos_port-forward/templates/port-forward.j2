@@ -2,12 +2,25 @@
 {% for rule_num, rule in port_forward.items() %}
 set nat destination rule {{ rule_num }} description '{{ rule.description }}'
 set nat destination rule {{ rule_num }} destination port {{ rule.dest_port }}
+set nat destination rule {{ rule_num }} protocol '{{ rule.protocol }}'
+set nat destination rule {{ rule_num }} translation address {{ rule.dest_ip }}
+
+{# Inbound interface or group #}
 {% if 'inbound_int_group' in rule %}
 set nat destination rule {{ rule_num }} inbound-interface group '{{ rule.inbound_int_group }}'
 {% else %}
 set nat destination rule {{ rule_num }} inbound-interface name '{{ rule.inbound_int }}'
 {% endif %}
-set nat destination rule {{ rule_num }} protocol '{{ rule.protocol }}'
-set nat destination rule {{ rule_num }} translation address {{ rule.dest_ip }}
+
+{# Translation port if not mapping port:port #}
+{% if 'port_translation' in rule %}
+set nat destination rule {{ rule_num }} translation port {{ rule.port_translation }}
+{% endif %}
+
+{# Restrict source address inbound #}
+{% if 'source_address' in rule %}
+set nat destination rule {{ rule_num }} source address '{{ rule.source_address }}'
+{% endif %}
+
 {% endfor %}
 {% endif %}

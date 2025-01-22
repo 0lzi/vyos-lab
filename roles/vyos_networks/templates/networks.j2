@@ -18,7 +18,7 @@ set service dns forwarding allow-from '{{ interface.value.cidr }}'
 set service dns forwarding listen-address '{{ interface.value.gateway.split("/")[0] }}'
 set service dns forwarding system
 
-{# Set up NAT #}
+{# Set up SNAT #}
 set nat source rule {{ loop.index }} description '{{ interface.value.description }} via eth1'
 set nat source rule {{ loop.index }} outbound-interface name 'eth1'
 set nat source rule {{ loop.index }} source address '{{ interface.value.cidr }}'
