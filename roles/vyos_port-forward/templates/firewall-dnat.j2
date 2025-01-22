@@ -1,0 +1,7 @@
+{% for network in networks %}
+{%if network.wan %}
+set firewall group interface-group WAN interface {{ network.interface }}
+{% endif %}
+set firewall ipv4 forward filter rule 999 action accept
+set firewall ipv4 forward filter rule 999 connection-status nat destination
+set firewall ipv4 forward filter rule 999 state new

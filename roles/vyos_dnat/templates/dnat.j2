@@ -1,7 +1,0 @@
-{# Set up destination NAT/Port Forward #}
-{# some dict to loop #}
-set nat destination rule {{ some loop key}} description 'Port Forward: HTTP to 192.168.0.100'
-set nat destination rule {{ some loop key}} destination port '80'
-set nat destination rule {{ some loop key}} inbound-interface name 'eth0'
-set nat destination rule {{ some loop key}} protocol 'tcp'
-set nat destination rule {{ some loop key}} translation address '192.168.0.100'

@@ -1,8 +1,0 @@
-{# Set up Firewall for Portforward #}
-{# DNAT translation happens before traffic traverses firewall #}
-{# Some dict of services and port translation #}
-set firewall name OUTSIDE-IN rule {{ some loop key}} action 'accept'
-set firewall name OUTSIDE-IN rule {{ some loop key}} destination address '192.168.0.100'
-set firewall name OUTSIDE-IN rule {{ some loop key}} destination port '80'
-set firewall name OUTSIDE-IN rule {{ some loop key}} protocol 'tcp'
-set firewall name OUTSIDE-IN rule {{ some loop key}} state new 'enable'
