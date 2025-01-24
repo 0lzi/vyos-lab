@@ -19,6 +19,10 @@ ansible requirements, `ansible-galaxy install -r requirements.yml`
 
 Run the playbooks as normal eg `ansible-playbook vyos_base.yml`
 
+## Ansible setup nix
+
+`nix develop` to use the flake.nix
+
 ## Initial manual config
 ```
 set system host-name 'firewall'
