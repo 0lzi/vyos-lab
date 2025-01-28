@@ -23,6 +23,8 @@ Run the playbooks as normal eg `ansible-playbook vyos_base.yml`
 
 `nix develop` to use the flake.nix
 
+with `direnv` `direnv allow .` and add `eval "$(direnv hook bash)"` to `~/.bashrc` install direnv via Nix config, Home-manager or via `nix-env -i direnv`
+
 ## Initial manual config
 ```
 set system host-name 'firewall'
