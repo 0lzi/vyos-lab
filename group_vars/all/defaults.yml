@@ -1,0 +1,8 @@
+name_servers:
+  - 192.168.1.114
+  - 192.168.1.115
+
+default_gateway: 192.168.1.254
+
+rolling: true
+rolling_url: "https://raw.githubusercontent.com/vyos/vyos-nightly-build/refs/heads/current/version.json"

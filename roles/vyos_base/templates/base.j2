@@ -18,3 +18,8 @@ set protocols static route 0.0.0.0/0 next-hop {{ default_gateway }}
 {# Remove vyos user #}
 delete system login user vyos
 
+{# Set rolling update url #}
+{% if rolling %}
+set system update-check url '{{ rolling_url }}'
+{% endif %}
+
