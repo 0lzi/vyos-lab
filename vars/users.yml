@@ -2,3 +2,4 @@ users:
   - name: oli
     ssh_keys:
       - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHbTW+h27gxALZQ+KXVU1IbR3I9EAEQRD8DVADGxmsrO oli@desktop
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO0H/Ljg4QTkUNnTnhVo2ksb91xaIvWelSEL/jxjfAOK oliverkelly@laptop

@@ -1,0 +1,37 @@
+networks:
+  0:
+    address: 192.168.1.251/24
+    cidr: 192.168.1.0/24
+    description: home
+    gateway: 192.168.1.254/24
+    firewall:
+      inside: false
+    vif: false
+    interface: eth1
+    wan: true
+  1:
+    address: 172.16.1.254/24
+    cidr: 172.16.1.0/24
+    description: lab2-net
+    gateway: 172.16.1.254/24
+    firewall:
+      inside: true
+      nat: true
+    dhcp:
+      start: 172.16.1.1
+    stop: 172.16.1.1
+    vif: false
+    interface: eth0
+  10:
+    address: 172.16.10.254/24
+    cidr: 172.16.10.0/24
+    description: lab2-net10
+    gateway: 172.16.10.254/24
+    firewall:
+      inside: true
+      nat: true
+    dhcp:
+      start: 172.16.10.1
+    stop: 172.16.10.1
+    vif: false
+    interface: eth2

@@ -1,5 +1,9 @@
-[vyos]
+[vyos:children]
+lab
+lab2
+
+[lab]
 firewall.lab
 
-[lab:children]
-vyos
+[lab2]
+firewall2.lab
