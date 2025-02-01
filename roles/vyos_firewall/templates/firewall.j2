@@ -16,3 +16,6 @@ set firewall group network-group NET-{{ "INSIDE" if addr.value.firewall.inside e
 set firewall group port-group {{ port_group }} port {{ port }}
 {% endfor %}
 {% endfor %}
+
+{% include 'forward-filter.j2' %}
+{% include 'input-filter.j2' %}
