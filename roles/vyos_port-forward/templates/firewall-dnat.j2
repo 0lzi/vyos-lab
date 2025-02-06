@@ -1,8 +1,0 @@
-{% for key, network in networks.items() %}
-  {% if 'wan' in network and network.wan %}
-set firewall group interface-group WAN interface {{ network.interface }}
-  {% endif %}
-{% endfor %}
-set firewall ipv4 forward filter rule 999 action accept
-set firewall ipv4 forward filter rule 999 connection-status nat destination
-set firewall ipv4 forward filter rule 999 state new
