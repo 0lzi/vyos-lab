@@ -6,7 +6,7 @@ set firewall ipv4 input filter rule 10 action 'accept'
 set firewall ipv4 input filter rule 10 description 'Allow from home network'
 set firewall ipv4 input filter rule 10 source group network-group 'NET-OUTSIDE'
 
-{# Set Rule 20 + #}
+{# Set Rule 20 + - Allow Port groups #}
 {% set rule_number = namespace(value=20) %}
 {% for port_group , data in port_groups.items() %}
 set firewall ipv4 input filter rule {{ rule_number.value }} description 'Allow {{ port_group }} to Firewall'
@@ -18,7 +18,7 @@ set firewall ipv4 input filter rule {{ rule_number.value }} state new
 {% endfor %}
 
 {# Set Rule 100 - Allow wireguard point-to-point #}
-set firewall ipv4 input filter rule 100 description `Allow Wireguard P2P`
+set firewall ipv4 input filter rule 100 description 'Allow Wireguard P2P'
 set firewall ipv4 input filter rule 100 action 'accept'
 set firewall ipv4 input filter rule 100 state new
 set firewall ipv4 input filter rule 100 source group network-group 'WIREGUARD'

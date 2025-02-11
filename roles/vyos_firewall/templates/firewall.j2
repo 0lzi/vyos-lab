@@ -19,5 +19,8 @@ set firewall group port-group {{ port_group }} port {{ port }}
 {% endfor %}
 {% endfor %}
 
+{# Set up FORWARD FILTER #}
 {% include 'forward-filter.j2' %}
+
+{# Set up INPUT FILTER #}
 {% include 'input-filter.j2' %}
