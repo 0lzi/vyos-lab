@@ -6,27 +6,20 @@ set firewall ipv4 input filter rule 10 action 'accept'
 set firewall ipv4 input filter rule 10 description 'Allow from home network'
 set firewall ipv4 input filter rule 10 source group network-group 'NET-OUTSIDE'
 
-{# Rule 20 - Allow from INSIDE to firewall on PORTS in port_group TCP #}
-set firewall ipv4 input filter rule 20 action 'accept'
-set firewall ipv4 input filter rule 20 description 'Allow INSIDE TCP Port GROUP'
-set firewall ipv4 input filter rule 20 source group network-group 'NET-INSIDE'
-set firewall ipv4 input filter rule 20 destination group port-group 'TCP'
-set firewall ipv4 input filter rule 20 protocol 'tcp'
-set firewall ipv4 input filter rule 20 state 'new'
+{# Set Rule 20 + #}
+{% set rule_number = namespace(value=20) %}
+{% for port_group , data in port_groups.items() %}
+set firewall ipv4 input filter rule {{ rule_number.value }} description 'Allow {{ port_group }} to Firewall'
+set firewall ipv4 input filter rule {{ rule_number.value }} destination group port-group {{ port_group }}
+set firewall ipv4 input filter rule {{ rule_number.value }} action 'accept'
+set firewall ipv4 input filter rule {{ rule_number.value }} protocol '{{ data.protocol }}'
+set firewall ipv4 input filter rule {{ rule_number.value }} state new
+{% set rule_number.value = rule_number.value + 10 %}
+{% endfor %}
 
-{# Rule 30 - Allow from INSIDE to firewall on PORTS in port_group TCP_UDP #}
-set firewall ipv4 input filter rule 30 action 'accept'
-set firewall ipv4 input filter rule 30 description 'Allow INSIDE TCP_UDP Port GROUP'
-set firewall ipv4 input filter rule 30 source group network-group 'NET-INSIDE'
-set firewall ipv4 input filter rule 30 destination group port-group 'TCP_UDP'
-set firewall ipv4 input filter rule 30 protocol 'tcp_udp'
-set firewall ipv4 input filter rule 30 state 'new'
-
-{# Rule 40 - Allow from INSIDE to firewall on PORTS in port_group UDP #}
-set firewall ipv4 input filter rule 40 action 'accept'
-set firewall ipv4 input filter rule 40 description 'Allow INSIDE UDP Port GROUP'
-set firewall ipv4 input filter rule 40 source group network-group 'NET-INSIDE'
-set firewall ipv4 input filter rule 40 destination group port-group 'UDP'
-set firewall ipv4 input filter rule 40 protocol 'udp'
-set firewall ipv4 input filter rule 40 state 'new'
+{# Set Rule 100 - Allow wireguard point-to-point #}
+set firewall ipv4 input filter rule 100 description `Allow Wireguard P2P`
+set firewall ipv4 input filter rule 100 action 'accept'
+set firewall ipv4 input filter rule 100 state new
+set firewall ipv4 input filter rule 100 source group network-group 'WIREGUARD'
 
