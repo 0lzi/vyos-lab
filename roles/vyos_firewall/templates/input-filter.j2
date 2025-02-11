@@ -18,7 +18,7 @@ set firewall ipv4 input filter rule {{ rule_number.value }} state new
 {% endfor %}
 
 {# Set Rule 100 - Allow wireguard point-to-point #}
-set firewall ipv4 input filter rule 100 description `Allow Wireguard P2P`
+set firewall ipv4 input filter rule 100 description 'Allow Wireguard P2P'
 set firewall ipv4 input filter rule 100 action 'accept'
 set firewall ipv4 input filter rule 100 state new
 set firewall ipv4 input filter rule 100 source group network-group 'WIREGUARD'
