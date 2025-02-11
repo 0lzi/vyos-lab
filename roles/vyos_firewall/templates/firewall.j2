@@ -9,6 +9,8 @@ set firewall global-options state-policy invalid action drop
 set firewall group network-group NET-{{ "INSIDE" if addr.value.firewall.inside else "OUTSIDE" }} network '{{ addr.value.cidr }}'
 {% endif %}
 {% endfor %}
+{# Set Wireguard network-group #}
+set firewall group network-group WIREGUARD network {{ wireguard.cidr }}
 
 {# Set port-groups #}
 {% for port_group, data in port_groups.items() %}
