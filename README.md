@@ -10,11 +10,14 @@ Make sure it has 2 interfaces one for WAN one for LAN/SDN network
 install image
 ```
 
-## Ansible setup
+## Ansible setup with UV
 
-prerequisites: `pipenv` , `sudo apt install pipenv` or `brew install pipenv`
+prerequisites: `uv`:
 
-With `pipenv` installed , run `pipenv install` then shell into the `pipenv` with `pipenv shell` install 
+ - `sudo apt install -y pipx  && pipx install uv`
+ - `brew install uv`
+
+With `uv` installed , run `uv sync --frozen` then go into the venv `. .venv/bin/activate` then install
 ansible requirements, `ansible-galaxy install -r requirements.yml`
 
 Run the playbooks as normal eg `ansible-playbook vyos_base.yml`
