@@ -5,7 +5,7 @@ firewall
 firewall.lab
 
 [lab]
-firewall.lab
+firewall1.lab
 
 [lab2]
 firewall2.lab

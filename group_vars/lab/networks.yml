@@ -1,19 +1,21 @@
 networks:
   0:
-    address: 192.168.1.252/24
-    cidr: 192.168.1.0/24
+    address: 192.168.1.0/24
     description: home
     gateway: 192.168.1.254/24
+    ip:
+      fw-1: 192.168.1.252
     firewall:
       inside: false
     vif: false
     interface: eth1
     wan: true
   1:
-    address: 10.0.1.254/24
-    cidr: 10.0.1.0/24
+    address: 10.0.1.0/24
     description: devnet
     gateway: 10.0.10.254/24
+    ip:
+      fw-1: 10.0.1.254/24
     firewall:
       inside: true
       nat: true
@@ -23,10 +25,11 @@ networks:
     vif: false
     interface: eth0
   10:
-    address: 10.0.10.254/24
-    cidr: 10.0.10.0/24
+    address: 10.0.10.0/24
     description: vlan10
     gateway: 10.0.10.254/24
+    ip:
+      fw-1: 10.0.10.254/24
     firewall:
       inside: true
       nat: true
