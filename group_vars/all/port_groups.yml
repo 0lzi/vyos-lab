@@ -5,7 +5,6 @@ port_groups:
       - 80 # http
       - 443 # https
       - 647 # dhcp-failover
-      - 8000 # test webserver
     protocol: tcp
   UDP:
     ports:

@@ -1,8 +1,8 @@
 name_servers:
-  - 192.168.1.114
-  - 192.168.1.115
+  - 10.18.20.20
+  - 10.18.20.21
 
-default_gateway: 192.168.1.254
+default_gateway: 10.18.10.1
 
-rolling: true
+rolling: false
 rolling_url: "https://raw.githubusercontent.com/vyos/vyos-nightly-build/refs/heads/current/version.json"

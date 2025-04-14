@@ -5,8 +5,6 @@ set system host-name {{ inventory_hostname_short }}
 set service ssh port {{ ssh_port }}
 set service ssh disable-password-authentication
 
-
-
 {# Set Nameservers  #}
 {% for nameserver in name_servers %}
 set system name-server {{ nameserver }}

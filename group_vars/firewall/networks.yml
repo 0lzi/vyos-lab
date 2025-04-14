@@ -1,76 +1,76 @@
 networks:
-  4000:
-    address: 31.125.219.34/32
-    cidr: 31.125.219.34/32
-    description: home
-    gateway: 195.166.130.255/32
-    firewall:
-      inside: false
-    vif: false
-    interface: eth1
-    wan: true
+  # 4000:
+  #   address: 31.125.219.34/32
+  #   cidr: 31.125.219.34/32
+  #   description: home
+  #   gateway: 195.166.130.255/32
+  #   vif: false
+  #   interface: eth1
+  #   wan: true
 
   10:
     address: 10.18.10.0/24
     description: Management
     gateway: 10.18.10.254/24
+    ip: 10.18.10.254/24
     firewall:
       inside: true
       nat: true
+      all_vlans: true
     dhcp:
       start: 10.18.10.1
       stop: 10.18.10.50
     vif: false
     interface: eth0
 
-  20:
-    address: 10.18.20.0/24
-    description: Production
-    gateway: 10.18.20.254/24
-    firewall:
-      inside: true
-      nat: true
-    dhcp:
-      start: 10.18.20.1
-      stop: 10.18.20.50
-    vif: false
-    interface: eth2
-
-  30:
-    address: 10.18.30.0/24
-    description: Dev
-    gateway: 10.18.30.254/24
-    firewall:
-      inside: true
-      nat: true
-    dhcp:
-      start: 10.18.30.1
-      stop: 10.18.30.50
-    vif: false
-    interface: eth3
-
-  40:
-    address: 10.18.40.0/24
-    description: Dev
-    gateway: 10.18.40.254/24
-    firewall:
-      inside: true
-      nat: true
-    dhcp:
-      start: 10.18.40.1
-      stop: 10.18.40.50
-    vif: false
-    interface: eth4
-
-  100:
-    address: 192.168.100.0/24
-    description: Guest
-    gateway: 192.168.100.254/24
-    firewall:
-      inside: true
-      nat: true
-    dhcp:
-      start: 192.168.100.1
-      stop: 192.168.100.150
-    vif: false
-    interface: eth5
+  # 20:
+  #   address: 10.18.20.0/24
+  #   description: Production
+  #   gateway: 10.18.20.254/24
+  #   firewall:
+  #     inside: true
+  #     nat: true
+  #   dhcp:
+  #     start: 10.18.20.1
+  #     stop: 10.18.20.50
+  #   vif: false
+  #   interface: eth2
+  #
+  # 30:
+  #   address: 10.18.30.0/24
+  #   description: Dev
+  #   gateway: 10.18.30.254/24
+  #   firewall:
+  #     inside: true
+  #     nat: true
+  #   dhcp:
+  #     start: 10.18.30.1
+  #     stop: 10.18.30.50
+  #   vif: false
+  #   interface: eth3
+  #
+  # 40:
+  #   address: 10.18.40.0/24
+  #   description: IoT
+  #   gateway: 10.18.40.254/24
+  #   firewall:
+  #     inside: true
+  #     nat: true
+  #   dhcp:
+  #     start: 10.18.40.1
+  #     stop: 10.18.40.50
+  #   vif: false
+  #   interface: eth4
+  #
+  # 100:
+  #   address: 192.168.100.0/24
+  #   description: Guest
+  #   gateway: 192.168.100.254/24
+  #   firewall:
+  #     inside: true
+  #     nat: true
+  #   dhcp:
+  #     start: 192.168.100.1
+  #     stop: 192.168.100.150
+  #   vif: false
+  #   interface: eth5

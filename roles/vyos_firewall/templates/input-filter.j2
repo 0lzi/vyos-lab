@@ -1,25 +1,46 @@
 {# Set input filters #}
 set firewall ipv4 input filter default-action 'drop'
 
-{# Rule 10 - Allow any from home-network #}
+{# Rule 10 - Allow DHCP #}
 set firewall ipv4 input filter rule 10 action 'accept'
-set firewall ipv4 input filter rule 10 description 'Allow from home network'
-set firewall ipv4 input filter rule 10 source group network-group 'NET-OUTSIDE'
+set firewall ipv4 input filter rule 10 description 'Allow DHCP'
+set firewall ipv4 input filter rule 10 destination port '53'
+set firewall ipv4 input filter rule 10 protocol 'udp'
+set firewall ipv4 input filter rule 10 state new
 
-{# Set Rule 20 + - Allow Port groups #}
-{% set rule_number = namespace(value=20) %}
-{% for port_group , data in port_groups.items() %}
-set firewall ipv4 input filter rule {{ rule_number.value }} description 'Allow {{ port_group }} to Firewall'
-set firewall ipv4 input filter rule {{ rule_number.value }} destination group port-group {{ port_group }}
-set firewall ipv4 input filter rule {{ rule_number.value }} action 'accept'
-set firewall ipv4 input filter rule {{ rule_number.value }} protocol '{{ data.protocol }}'
-set firewall ipv4 input filter rule {{ rule_number.value }} state new
-{% set rule_number.value = rule_number.value + 10 %}
-{% endfor %}
+{# Rule 20 - Allow DNS #}
+set firewall ipv4 input filter rule 20 action 'accept'
+set firewall ipv4 input filter rule 20 description 'Allow DNS'
+set firewall ipv4 input filter rule 20 destination port '67'
+set firewall ipv4 input filter rule 20 protocol 'udp'
+set firewall ipv4 input filter rule 20 state new
 
-{# Set Rule 100 - Allow wireguard point-to-point #}
-set firewall ipv4 input filter rule 100 description 'Allow Wireguard P2P'
-set firewall ipv4 input filter rule 100 action 'accept'
-set firewall ipv4 input filter rule 100 state new
-set firewall ipv4 input filter rule 100 source group network-group 'WIREGUARD'
+{# Rule 30 - Allow NTP #}
+set firewall ipv4 input filter rule 30 action 'accept'
+set firewall ipv4 input filter rule 30 description 'Allow NTP'
+set firewall ipv4 input filter rule 30 destination port '123'
+set firewall ipv4 input filter rule 30 protocol 'udp'
+set firewall ipv4 input filter rule 30 state new
 
+{# Rule 40 - Allow SSH from Mgmt #}
+set firewall ipv4 input filter rule 40 action 'accept'
+set firewall ipv4 input filter rule 40 description 'Allow SSH from MGMT'
+set firewall ipv4 input filter rule 40 destination port '22'
+set firewall ipv4 input filter rule 40 source group network-group 'MGMT'
+set firewall ipv4 input filter rule 40 protocol 'tcp'
+set firewall ipv4 input filter rule 40 state new
+
+{# Rule 50 - Allow ICMP #}
+set firewall ipv4 input filter rule 50 action 'accept'
+set firewall ipv4 input filter rule 50 icmp type-name 'echo-request'
+set firewall ipv4 input filter rule 50 description 'Allow ICMP'
+set firewall ipv4 input filter rule 50 protocol 'icmp'
+set firewall ipv4 input filter rule 50 state new
+
+{# Rule 60 - Allow WIREGUARD #}
+set firewall ipv4 input filter rule 60 action 'accept'
+set firewall ipv4 input filter rule 60 description 'Allow WIREGUARD'
+set firewall ipv4 input filter rule 60 destination port '51820'
+set firewall ipv4 input filter rule 60 source group network-group 'WIREGUARD'
+set firewall ipv4 input filter rule 60 protocol 'tcp_udp'
+set firewall ipv4 input filter rule 60 state new

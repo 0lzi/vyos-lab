@@ -1,23 +1,10 @@
 {# Set forward filters #}
 set firewall ipv4 forward filter default-action 'drop'
 
-{# Rule 10 - Block INSIDE > OUTSIDE #}
-set firewall ipv4 forward filter rule 10 action 'drop'
-set firewall ipv4 forward filter rule 10 description 'Drop VXLAN to home-network '
-set firewall ipv4 forward filter rule 10 source group network-group 'NET-INSIDE'
-set firewall ipv4 forward filter rule 10 destination group network-group 'NET-OUTSIDE'
-
-{# Rule 20 - Allow OUTSIDE > INSIDE #}
-set firewall ipv4 forward filter rule 20 action 'accept'
-set firewall ipv4 forward filter rule 20 description 'Allow home-network into VXLAN'
-set firewall ipv4 forward filter rule 20 source group network-group 'NET-OUTSIDE'
-set firewall ipv4 forward filter rule 20 destination group network-group 'NET-INSIDE'
-
-{# Rule 30 - Allow VXLAN Internet Access #}
-set firewall ipv4 forward filter rule 30 action 'accept'
-set firewall ipv4 forward filter rule 30 description 'Allow VXLAN Internet'
-set firewall ipv4 forward filter rule 30 source group network-group 'NET-INSIDE'
-set firewall ipv4 forward filter rule 30 destination address '0.0.0.0/0'
+{# Rule 10 - Allow MGMT forwarding #}
+set firewall ipv4 forward filter rule 10 action 'accept'
+set firewall ipv4 forward filter rule 10 description 'Allow MGMT forwarding'
+set firewall ipv4 forward filter rule 10 source group network-group 'MGMT'
 
 {# Rule 9999 - Allow port forward / DNAT #}
 set firewall ipv4 forward filter rule 9999 action 'accept'
@@ -25,3 +12,8 @@ set firewall ipv4 forward filter rule 9999 description 'Allow DNAT'
 set firewall ipv4 forward filter rule 9999 connection-status nat 'destination'
 set firewall ipv4 forward filter rule 9999 state 'new'
 
+{# Rule 999999 - Drop RFC1918 unless specified #}
+set firewall ipv4 forward filter rule 999999 action 'drop'
+set firewall ipv4 forward filter rule 999999 description 'Drop RFC1918 so VLANS are isolated unless pinholes needed'
+set firewall ipv4 forward filter rule 999999 state new
+set firewall ipv4 forward filter rule 999999 destination group network-group 'RFC1918'
