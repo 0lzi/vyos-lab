@@ -8,7 +8,7 @@ set firewall ipv4 forward filter rule {{ 10 * vlan }} action 'jump'
 set firewall ipv4 forward filter rule {{ 10 * vlan }} inbound-interface name '{{ network.interface }}'
 set firewall ipv4 forward filter rule {{ 10 * vlan }} jump-target 'VLAN-{{ vlan }}-FORWARD'
 
-{# VLAN-FORWARD default accept to allow internet access}
+{# VLAN-FORWARD default accept to allow internet access #}
 set firewall ipv4 name VLAN-{{ vlan }}-FORWARD default-action accept
 
 {# Rule 999999 - Drop RFC1918 unless specified #}
