@@ -1,0 +1,32 @@
+static_leases:
+  # MGMT
+  10:
+    router:
+      ip: 10.18.10.1
+    ap-01:
+      ip: 10.18.10.2
+    pve1:
+      ip: 10.18.10.10
+    pve2:
+      ip: 10.18.10.11
+    pve3:
+      ip: 10.18.10.12
+    firewall:
+      ip: 10.18.10.254
+  # Production
+  20:
+    pi-hole-1:
+      ip: 10.18.20.20
+      mac: "BC:24:11:C8:31:4F"
+    pi-hole-2:
+      ip: 10.18.20.21
+      mac: "BC:24:11:F1:4B:09"
+    backblaze-backup:
+      ip: 10.18.20.23
+      mac: "BC:24:11:3D:74:B3"
+    lancache:
+      ip: 10.18.20.24
+      mac: "BC:24:11:E4:5A:90"
+    docker-1:
+      ip: 10.18.20.25
+      mac: "BC:24:11:95:87:39"

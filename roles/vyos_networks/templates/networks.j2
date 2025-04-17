@@ -7,22 +7,23 @@ set interfaces ethernet {{ network.interface }} description {{ network.descripti
 {% if network.dhcp is defined %}
 set service dhcp-server shared-network-name {{ network.description }} authoritative
 set service dhcp-server shared-network-name {{ network.description }} description '{{ network.description }}'
-set service dhcp-server shared-network-name {{ network.description }} subnet {{ network.address }} option default-router '{{ network.gateway.split("/")[0] }}'
-set service dhcp-server shared-network-name {{ network.description }} subnet {{ network.address }} option name-server '{{ network.gateway.split("/")[0] }}'
+set service dhcp-server shared-network-name {{ network.description }} subnet {{ network.address }} default-router '{{ network.gateway.split("/")[0] }}'
+set service dhcp-server shared-network-name {{ network.description }} subnet {{ network.address }} name-server '{{ network.gateway.split("/")[0] }}'
 set service dhcp-server shared-network-name {{ network.description }} subnet {{ network.address }} range 0 start '{{ network.dhcp.start }}'
 set service dhcp-server shared-network-name {{ network.description }} subnet {{ network.address }} range 0 stop '{{ network.dhcp.stop }}'
-set service dhcp-server shared-network-name {{ network.description }} subnet {{ network.address }} subnet-id '{{ network.key }}'
 
 {# Enable DNS forwarder #}
-set service dns forwarding allow-from '{{ network.cidr }}'
+set service dns forwarding allow-from '{{ network.address }}'
 set service dns forwarding listen-address '{{ network.gateway.split("/")[0] }}'
 set service dns forwarding system
 
-{# Set up SNAT #}
+{# Set up SNAT if WAN there is WAN interface #}
+{% if 'wan' in network %}
 set nat source rule {{ loop.index }} description '{{ network.description }} via eth1'
 set nat source rule {{ loop.index }} outbound-interface name 'eth1'
-set nat source rule {{ loop.index }} source address '{{ network.cidr }}'
+set nat source rule {{ loop.index }} source address '{{ network.address }}'
 set nat source rule {{ loop.index }} translation address 'masquerade'
+{% endif %}
 
 {% endif %}
 {% endfor %}

@@ -1,12 +1,14 @@
-{# Set up user and ssh key #}
+{# Disable ssh-passowrd #}
+set service ssh disable-password-authentication
 
+{# Remove vyos user #}
+delete system login user vyos
+
+{# Set up user and ssh key #}
 {% for user in users %}
 {% for key in user.ssh_keys %}
-system login user {{ user.name }} authentication public-keys {{ key.split()[2] }} key '{{ key.split()[1] }}'
-system login user {{ user.name }} authentication public-keys {{ key.split()[2] }} type '{{ key.split()[0] }}'
-
-
+set system login user {{ user.name }} authentication public-keys {{ key.split()[2] }} key '{{ key.split()[1] }}'
+set system login user {{ user.name }} authentication public-keys {{ key.split()[2] }} type '{{ key.split()[0] }}'
 
 {% endfor %}
 {% endfor %}
-

@@ -23,54 +23,58 @@ networks:
     vif: false
     interface: eth0
 
-  # 20:
-  #   address: 10.18.20.0/24
-  #   description: Production
-  #   gateway: 10.18.20.254/24
-  #   firewall:
-  #     inside: true
-  #     nat: true
-  #   dhcp:
-  #     start: 10.18.20.1
-  #     stop: 10.18.20.50
-  #   vif: false
-  #   interface: eth2
-  #
-  # 30:
-  #   address: 10.18.30.0/24
-  #   description: Dev
-  #   gateway: 10.18.30.254/24
-  #   firewall:
-  #     inside: true
-  #     nat: true
-  #   dhcp:
-  #     start: 10.18.30.1
-  #     stop: 10.18.30.50
-  #   vif: false
-  #   interface: eth3
-  #
-  # 40:
-  #   address: 10.18.40.0/24
-  #   description: IoT
-  #   gateway: 10.18.40.254/24
-  #   firewall:
-  #     inside: true
-  #     nat: true
-  #   dhcp:
-  #     start: 10.18.40.1
-  #     stop: 10.18.40.50
-  #   vif: false
-  #   interface: eth4
-  #
-  # 100:
-  #   address: 192.168.100.0/24
-  #   description: Guest
-  #   gateway: 192.168.100.254/24
-  #   firewall:
-  #     inside: true
-  #     nat: true
-  #   dhcp:
-  #     start: 192.168.100.1
-  #     stop: 192.168.100.150
-  #   vif: false
-  #   interface: eth5
+  20:
+    address: 10.18.20.0/24
+    description: Production
+    gateway: 10.18.20.254/24
+    ip: 10.18.20.254/24
+    firewall:
+      inside: true
+      nat: true
+    dhcp:
+      start: 10.18.20.1
+      stop: 10.18.20.50
+    vif: false
+    interface: eth1
+
+  30:
+    address: 10.18.30.0/24
+    description: Dev
+    gateway: 10.18.30.254/24
+    ip: 10.18.30.254/24
+    firewall:
+      inside: true
+      nat: true
+    dhcp:
+      start: 10.18.30.1
+      stop: 10.18.30.50
+    vif: false
+    interface: eth2
+
+  40:
+    address: 10.18.40.0/24
+    description: IoT
+    gateway: 10.18.40.254/24
+    ip: 10.18.40.254/24
+    firewall:
+      inside: true
+      nat: true
+    dhcp:
+      start: 10.18.40.1
+      stop: 10.18.40.50
+    vif: false
+    interface: eth3
+
+  100:
+    address: 192.168.100.0/24
+    description: Guest
+    gateway: 192.168.100.254/24
+    ip: 192.168.100.254/24
+    firewall:
+      inside: true
+      nat: true
+    dhcp:
+      start: 192.168.100.1
+      stop: 192.168.100.150
+    vif: false
+    interface: eth4

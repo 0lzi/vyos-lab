@@ -3,7 +3,6 @@ set system host-name {{ inventory_hostname_short }}
 
 {# Set SSH #}
 set service ssh port {{ ssh_port }}
-set service ssh disable-password-authentication
 
 {# Set Nameservers  #}
 {% for nameserver in name_servers %}
@@ -13,11 +12,10 @@ set system name-server {{ nameserver }}
 {# Set Static route #}
 set protocols static route 0.0.0.0/0 next-hop {{ default_gateway }}
 
-{# Remove vyos user #}
-delete system login user vyos
-
 {# Set rolling update url #}
 {% if rolling %}
 set system update-check url '{{ rolling_url }}'
 {% endif %}
 
+{# Login banner #}
+set system login banner post-login ''
