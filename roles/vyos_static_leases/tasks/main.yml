@@ -1,0 +1,4 @@
+- name: Set static leases
+  vyos.vyos.vyos_config:
+    src: static-leases.j2
+  notify: Save config
