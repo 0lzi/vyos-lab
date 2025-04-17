@@ -1,6 +1,25 @@
 {# Set forward filters #}
 set firewall ipv4 forward filter default-action 'drop'
 
+{# Set Firewall for each VLAN #}
+{% for vlan, network in networks.items() %}
+{# Create input filter to VLAN-FORWARD #}
+set firewall ipv4 forward filter rule {{ 10 * vlan }} action 'jump'
+set firewall ipv4 forward filter rule {{ 10 * vlan }} inbound-interface name '{{ network.interface }}'
+set firewall ipv4 forward filter rule {{ 10 * vlan }} jump-target 'VLAN-{{ vlan }}-FORWARD'
+
+{# VLAN-FORWARD default accept to allow internet access}
+set firewall ipv4 name VLAN-{{ vlan }}-FORWARD default-action accept
+
+{# Rule 999999 - Drop RFC1918 unless specified #}
+set firewall ipv4 name VLAN-{{ vlan }}-FORWARD rule 999999 action 'drop'
+set firewall ipv4 name VLAN-{{ vlan }}-FORWARD rule 999999 description 'Drop RFC1918 so VLANS are isolated unless pinholes needed'
+set firewall ipv4 name VLAN-{{ vlan }}-FORWARD rule 999999 state new
+set firewall ipv4 name VLAN-{{ vlan }}-FORWARD rule 999999 destination group network-group 'RFC1918'
+set firewall ipv4 name VLAN-{{ vlan }}-FORWARD rule 999999 inbound-interface name '{{ network.interface }}'
+{% endfor %}
+
+{# Forward filter rules #}
 {# Rule 10 - Allow MGMT forwarding #}
 set firewall ipv4 forward filter rule 10 action 'accept'
 set firewall ipv4 forward filter rule 10 description 'Allow MGMT forwarding'
@@ -12,8 +31,3 @@ set firewall ipv4 forward filter rule 9999 description 'Allow DNAT'
 set firewall ipv4 forward filter rule 9999 connection-status nat 'destination'
 set firewall ipv4 forward filter rule 9999 state 'new'
 
-{# Rule 999999 - Drop RFC1918 unless specified #}
-set firewall ipv4 forward filter rule 999999 action 'drop'
-set firewall ipv4 forward filter rule 999999 description 'Drop RFC1918 so VLANS are isolated unless pinholes needed'
-set firewall ipv4 forward filter rule 999999 state new
-set firewall ipv4 forward filter rule 999999 destination group network-group 'RFC1918'

@@ -3,14 +3,14 @@ set firewall ipv4 input filter default-action 'drop'
 
 {# Rule 10 - Allow DHCP #}
 set firewall ipv4 input filter rule 10 action 'accept'
-set firewall ipv4 input filter rule 10 description 'Allow DHCP'
+set firewall ipv4 input filter rule 10 description 'Allow DNS'
 set firewall ipv4 input filter rule 10 destination port '53'
 set firewall ipv4 input filter rule 10 protocol 'udp'
 set firewall ipv4 input filter rule 10 state new
 
 {# Rule 20 - Allow DNS #}
 set firewall ipv4 input filter rule 20 action 'accept'
-set firewall ipv4 input filter rule 20 description 'Allow DNS'
+set firewall ipv4 input filter rule 20 description 'Allow DHCP'
 set firewall ipv4 input filter rule 20 destination port '67'
 set firewall ipv4 input filter rule 20 protocol 'udp'
 set firewall ipv4 input filter rule 20 state new

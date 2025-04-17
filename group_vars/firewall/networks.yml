@@ -65,6 +65,20 @@ networks:
     vif: false
     interface: eth3
 
+  50:
+    address: 10.18.50.0/24
+    description: Home
+    gateway: 10.18.50.254/24
+    ip: 10.18.50.254/24
+    firewall:
+      inside: true
+      nat: true
+    dhcp:
+      start: 10.18.50.1
+      stop: 10.18.50.50
+    vif: false
+    interface: eth5
+
   100:
     address: 192.168.100.0/24
     description: Guest

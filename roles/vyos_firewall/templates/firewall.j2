@@ -10,9 +10,12 @@ set firewall group network-group RFC1918 network '192.168.0.0/16'
 
 {% for vlan , addr in networks.items() %}
 {% if addr.firewall is defined %}
-set firewall group network-group VLAN-{{ vlan }} network '{{ addr.cidr }}'
+set firewall group network-group VLAN-{{ vlan }} network '{{ addr.address }}'
 {% endif %}
 {% endfor %}
+
+{# Set MGMT group #}
+set firewall group network-group MGMT network '{{ networks[management_network]['address'] }}'
 
 {# Set Wireguard network-group #}
 set firewall group network-group WIREGUARD network {{ wireguard.cidr }}
