@@ -1,0 +1,9 @@
+{% for vlan_id , vlan_mappings in static_leases.items() %}
+{% for hostname , mapping_details in vlan_mappings.items() %}
+{% if networks[vlan_id]['dhcp'] is defined and mapping_details.mac is defined %}
+set service dhcp-server shared-network-name {{ networks[vlan_id]['description'] }} subnet {{ networks[vlan_id]['address'] }} static-mapping {{ hostname }} ip-address '{{ mapping_details.ip }}'
+set service dhcp-server shared-network-name {{ networks[vlan_id]['description'] }} subnet {{ networks[vlan_id]['address'] }} static-mapping {{ hostname }} mac-address '{{ mapping_details.mac }}'
+{% endif %}
+set system static-host-mapping host-name {{ hostname }}.lab inet '{{ mapping_details.ip }}'
+{% endfor %}
+{% endfor %}

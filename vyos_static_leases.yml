@@ -1,0 +1,7 @@
+---
+- name: Set up VyOS Base
+  hosts: vyos
+  gather_facts: true
+  order: inventory
+  roles:
+    - vyos_static_leases
